@@ -1,0 +1,124 @@
+.page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3px;
+  height: 100vh;
+  background-color: #f9fafc;
+}
+
+.card {
+  width: 350px;
+  background-color: white;
+  border-radius: 24px;
+  padding: 32px;
+  border: 1px solid #ececec;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+}
+
+.topPart {
+  margin-bottom: 10px;
+}
+
+.topPart h1 {
+  font-size: 18px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  color: #1f1f1f;
+  margin: 0;
+}
+
+.topPart p {
+  color: #777777;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  margin: 0;
+}
+
+.switchButtons {
+  display: flex;
+  background-color: #f1f3f7;
+  padding: 4px;
+  border-radius: 16px;
+  margin-bottom: 18px;
+}
+
+.switchButton,
+.activeButton {
+  flex: 1;
+  height: 32px;
+  border: none;
+  border-radius: 12px;
+  background: transparent;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+.switchButton {
+  color: #777777;
+}
+
+.switchButton:hover {
+  background-color: #e8ebf1;
+}
+
+.activeButton {
+  background-color: white;
+  color: black;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field label {
+  font-size: 14px;
+  color: #444444;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.field input {
+  height: 32px;
+  border-radius: 14px;
+  border: 1px solid #dddddd;
+  padding: 0 14px;
+  outline: none;
+  background-color: #fafafa;
+  font-size: 14px;
+}
+
+.field input:focus {
+  border-color: #bbbbbb;
+}
+
+.error {
+  display: block;
+  font-size: 13px;
+  color: #e53935;     
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  margin-left: 2px;
+}
+
+.submitButton {
+  height: 36px;
+  border: none;
+  border-radius: 14px;
+  background-color: rgb(113, 128, 157);
+  color: white;
+  cursor: pointer;
+  margin-top: 4px;
+  font-size: 14px;
+}
+
+.submitButton:hover {
+  opacity: 0.92;
+}

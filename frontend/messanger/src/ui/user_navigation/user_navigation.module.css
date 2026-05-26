@@ -1,0 +1,11 @@
+
+.navigation{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    padding: 1px;
+    background-color: rgb(220, 220, 220, 0.9);
+    backdrop-filter: 10px;
+    border-radius: 20px;
+}

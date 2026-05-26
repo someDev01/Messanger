@@ -1,0 +1,19 @@
+
+.icon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-height: 32px;
+    min-height: 32px;
+    height: 100%;
+    max-width: 32px;
+    min-width: 32px;
+    width: 100%;
+    padding: 10px;
+    border-radius: 50%;
+    background-color: rgb(178, 178, 178);
+
+    p{
+        user-select: none;
+    }
+}

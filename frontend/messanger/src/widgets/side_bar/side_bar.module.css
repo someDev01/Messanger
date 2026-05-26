@@ -1,0 +1,127 @@
+
+.side_bar{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    max-width: 350px;
+    width: 100%;
+    gap: 16px;
+}
+
+.top_part{
+    display: flex;
+    flex-direction: column;
+    padding: 2px 8px;
+}
+
+.title_with_info{
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.middle_part{
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    -ms-overflow-style: none;
+}
+
+.middle_part::-webkit-scrollbar{
+    display: none;
+}
+
+.chats_list{
+    display: flex;
+    flex-direction: column;
+}
+
+.bottom_part{
+    display: none;
+}
+
+@media (max-width: 768px){
+    .side_bar{
+        max-width: 100%;
+    }
+
+    .chats_list{
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 42px;
+    }
+
+    .bottom_part{
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        padding: 6px 20px;
+    }
+}
+
+.search_users {
+    margin-top: 10px;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+.search_user {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 10px;
+
+    border-radius: 14px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.search_user:hover {
+    background: #f3f3f3;
+}
+
+.search_avatar {
+    width: 42px;
+    height: 42px;
+
+    border-radius: 50%;
+
+    background: #dbe7ff;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.search_info {
+    display: flex;
+    flex-direction: column;
+}
+
+.search_name {
+    margin: 0;
+
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.search_number {
+    font-size: 13px;
+
+    color: gray;
+}

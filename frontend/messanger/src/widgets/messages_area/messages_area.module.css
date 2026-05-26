@@ -1,0 +1,27 @@
+
+.messages_list{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    gap: 4px;
+    overflow-y: auto;
+    -ms-overflow-style: none;
+}
+
+.messages_list::-webkit-scrollbar{
+    display: none;
+}
+
+.date_block{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.row{
+    display: flex;
+}
+

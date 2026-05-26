@@ -1,0 +1,21 @@
+
+.button{
+    user-select: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    padding: 6px;
+    border-radius: 20px;
+    transition: all .3s ease;
+
+    p{
+        color: rgb(0, 0, 0);
+    }
+}
+
+.button.active{
+    background-color: rgb(149, 181, 237, 0.8);
+    backdrop-filter: blur(10px);
+}

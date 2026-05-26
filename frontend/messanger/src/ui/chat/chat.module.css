@@ -1,0 +1,23 @@
+
+.chat{
+    display: flex;
+    align-items: start;
+    padding: 10px 10px;
+    gap: 10px;
+    height: 100%;
+    transition:  all .3s ease;
+}
+
+.chat.active{
+    background-color: rgb(221, 221, 221);
+}
+
+.name_with_message_part{
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    min-width: 0;
+    gap: 10px;
+}

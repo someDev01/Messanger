@@ -1,0 +1,29 @@
+
+.message{
+    width: 100%;
+}
+
+.who_and_last_message_block{
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    
+    p{
+        user-select: none;
+        margin: 0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+}
+
+.message{
+    color: rgb(0, 0, 0);
+    font-size: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.who{
+    color: rgb(115, 135, 183);
+    font-size: 14px;
+}

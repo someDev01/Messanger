@@ -1,0 +1,53 @@
+
+.container{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+    min-width: 0;
+}
+
+.top_part{
+    display: flex;
+    flex: 0 0 56px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 20px;
+    background-color: rgb(241, 241, 241);
+    box-shadow: 2px 4px 8px rgba(37, 37, 37, 0.1);
+}
+
+.left_part{
+    display: flex;
+    gap: 20px;
+}
+
+.user_info{
+    display: flex;
+    gap: 4px;
+}
+
+.name_and_status{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+}
+
+.middle_part{
+    display: flex;
+    flex: 1;
+    min-height: 0;
+}
+
+.date_block{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bottom_part{
+    display: flex;
+    flex: 0 0 auto;
+    padding: 8px;
+}
