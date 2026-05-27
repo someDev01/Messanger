@@ -15,7 +15,7 @@ function MainPage({setIsAuth}) {
     const [selectedRoomId, setSelectedRoomId] = useState(null);    
 
     const selectedRoom =
-        rooms.find(room => room.id === selectedRoomId);
+        rooms.find(room => room.id === selectedRoomId) || {};
 
     const [activeTab, setActiveTab] =
         useState('chats');
