@@ -125,7 +125,7 @@ function ChatWithMessages({
 
           <div className={styles.user_info}>
             <Avatar avatar={selectedRoom.avatar} name={selectedRoom.name}/>
-            <div className={styles.name_and_status}>
+            <div className={styles.name}>
               <UserName name={selectedRoom.name} />
             </div>
           </div>
