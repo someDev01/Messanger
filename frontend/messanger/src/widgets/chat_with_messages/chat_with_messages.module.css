@@ -38,6 +38,11 @@
     display: flex;
     flex: 1;
     min-height: 0;
+    background-image: url('/chat_bg.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
 }
 
 .date_block{
