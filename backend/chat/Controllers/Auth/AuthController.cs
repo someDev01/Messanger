@@ -83,6 +83,7 @@ public class AuthController(
             res.Value.name,
             res.Value.number,
             res.Value.id,
+            res.Value.avatar
         });
     }
 

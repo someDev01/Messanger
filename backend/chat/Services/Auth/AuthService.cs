@@ -73,14 +73,14 @@ public class AuthService(
         return Result.Result<string>.Success(user.Session);  
     }
 
-    public async Task<Result.Result<(string name, Guid id, string number)>> CheckMe(string session, CancellationToken cancellationToken = default)
+    public async Task<Result.Result<(string name, Guid id, string number, string? avatar)>> CheckMe(string session, CancellationToken cancellationToken = default)
     {
         var user = await context.Users.FirstOrDefaultAsync(u => u.Session == session, cancellationToken);
         if (user is null)
-            return Result.Result<(string name, Guid id, string number)>.Failure("Токен не совпадает");
+            return Result.Result<(string name, Guid id, string number, string? avatar)>.Failure("Токен не совпадает");
 
-        return Result.Result<(string name, Guid id, string number)>.Success(
-            (user.Name, user.Id, user.Number));
+        return Result.Result<(string name, Guid id, string number, string? avatar)>.Success(
+            (user.Name, user.Id, user.Number, user.Avatar));
 
     }
 
