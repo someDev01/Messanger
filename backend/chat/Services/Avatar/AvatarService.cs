@@ -4,15 +4,24 @@ using System;
 
 namespace chat.Services.Avatar;
 
-public class AvatarService(IWebHostEnvironment env, DataContext context)
+public class AvatarService(
+    IWebHostEnvironment env,
+    DataContext context)
 {
-    public async Task<string> UploadAvatar(
+    public async Task<string?> UploadAvatar(
         string session,
         IFormFile file,
         CancellationToken cancellationToken = default)
     {
+        var rootPath =
+            env.WebRootPath ??
+            Path.Combine(
+                Directory.GetCurrentDirectory(),
+                "wwwroot"
+            );
+
         var uploadsPath = Path.Combine(
-            env.WebRootPath,
+            rootPath,
             "uploads",
             "avatars"
         );
@@ -22,14 +31,17 @@ public class AvatarService(IWebHostEnvironment env, DataContext context)
             Directory.CreateDirectory(uploadsPath);
         }
 
-        var extension = Path.GetExtension(file.FileName);
+        var extension =
+            Path.GetExtension(file.FileName);
+
         var fileName =
             $"{Guid.NewGuid()}{extension}";
 
         var fullPath =
             Path.Combine(uploadsPath, fileName);
 
-        using (var stream = new FileStream(fullPath, FileMode.Create))
+        using (var stream =
+               new FileStream(fullPath, FileMode.Create))
         {
             await file.CopyToAsync(stream);
         }
@@ -42,7 +54,9 @@ public class AvatarService(IWebHostEnvironment env, DataContext context)
             .FirstOrDefaultAsync(cancellationToken);
 
         if (user is null)
-            return null!;
+        {
+            return null;
+        }
 
         user.Avatar = avatarPath;
 
