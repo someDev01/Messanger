@@ -26,8 +26,6 @@ function ChatWithMessages({
       const loadMessages = async () => {
         if (!selectedRoom?.id) return;
 
-        setMessages([]);
-        
         const session = localStorage.getItem('session');
 
         try {
