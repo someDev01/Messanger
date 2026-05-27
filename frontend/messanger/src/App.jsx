@@ -14,7 +14,9 @@ import { ToastContainer } from "react-toastify";
 
 function App() {
 
-    const [isAuth, setIsAuth] = useState(null);
+    const [isAuth, setIsAuth] = useState(() => {
+        return !!localStorage.getItem('session');
+    });
 
     useEffect(() => {
 

@@ -8,21 +8,21 @@ import styles from '../messages_area/messages_area.module.css';
 function MessagesArea({
   messages,
   currentUserId,
-  shouldScroll,
-  setShouldScroll
+  scrollReason,
+  setScrollReason
 }) {
   const bottomRef = useRef(null);
 
   useEffect(() => {
-    if (!shouldScroll) return;
+    if (!scrollReason) return;
 
     bottomRef.current?.scrollIntoView({
       behavior: 'smooth',
       block: 'end'
     });
 
-    setShouldScroll(false);
-  }, [messages, shouldScroll, setShouldScroll]);
+    setScrollReason(null);
+  }, [messages, scrollReason, setScrollReason]);
 
   return (
     <div className={styles.messages_list}>

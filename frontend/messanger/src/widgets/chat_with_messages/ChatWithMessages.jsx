@@ -18,7 +18,7 @@ function ChatWithMessages({
   setSelectedRoomId,
   currentUserId
 }) {
-  const [shouldScroll, setShouldScroll] = useState(false);
+  const [scrollReason, setScrollReason] = useState(null);
   const [inputValue, setInputValue] = useState('');
   const [messages, setMessages] = useState([]);
 
@@ -36,7 +36,7 @@ function ChatWithMessages({
 
       const data = await res.json();
       setMessages(data);
-      setShouldScroll(true);
+      setScrollReason('open');
     };
 
     loadMessages();
@@ -64,7 +64,7 @@ function ChatWithMessages({
 
       setMessages(prev => [...prev, newMessage]);
       setInputValue('');
-      setShouldScroll(true);
+      setScrollReason('send');
     } catch (err) {
       console.log(err);
     }
@@ -97,8 +97,8 @@ function ChatWithMessages({
         <MessagesArea
           messages={messages}
           currentUserId={currentUserId}
-          shouldScroll={shouldScroll}
-          setShouldScroll={setShouldScroll}
+          scrollReason={scrollReason}
+          setScrollReason={setScrollReason}
         />
       </div>
 
