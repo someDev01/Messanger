@@ -23,61 +23,44 @@ function ChatWithMessages({
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
+    const loadMessages = async () => {
+      if (!selectedRoom?.id) return;
 
-      useEffect(() => {
-        const loadMessages = async () => {
-          if (!selectedRoom?.id) return;
+      setMessages([]);
+      setScrollReason(null);
 
-          setMessages([]);
-          setScrollReason(null);
+      const session = localStorage.getItem('session');
 
-          const session = localStorage.getItem('session');
-
-          try {
-            const res = await fetch(`${API}/api/messages/${selectedRoom.id}`, {
-              headers: {
-                Authorization: `Bearer ${session}`
-              }
-            });
-
-            const data = await res.json();
-
-            setMessages(prev => {
-              const map = new Map(prev.map(m => [m.id, m]));
-              data.forEach(m => map.set(m.id, m));
-
-              return Array.from(map.values()).sort(
-                (a, b) => new Date(a.sendedAt) - new Date(b.sendedAt)
-              );
-            });
-
-            setScrollReason('open');
-          } catch (err) {
-            console.log(err);
+      try {
+        const res = await fetch(`${API}/api/messages/${selectedRoom.id}`, {
+          headers: {
+            Authorization: `Bearer ${session}`
           }
-        };
+        });
 
-        loadMessages();
+        const data = await res.json();
 
-        const interval = setInterval(loadMessages, 3000);
+        setMessages(prev => {
+          const map = new Map(prev.map(m => [m.id, m]));
+          data.forEach(m => map.set(m.id, m));
 
-        return () => clearInterval(interval);
-      }, [selectedRoom?.id]);
+          return Array.from(map.values()).sort(
+            (a, b) => new Date(a.sendedAt) - new Date(b.sendedAt)
+          );
+        });
 
-  // первая загрузка сообщений
-  loadMessages();
+        setScrollReason('open');
+      } catch (err) {
+        console.log(err);
+      }
+    };
 
-  // скролл вниз только при открытии чата
-  setScrollReason('open');
-
-  // обновление сообщений каждые 3 секунды
-  const interval = setInterval(() => {
     loadMessages();
-  }, 3000);
 
-  return () => clearInterval(interval);
+    const interval = setInterval(loadMessages, 3000);
 
-}, [selectedRoom?.id]);
+    return () => clearInterval(interval);
+  }, [selectedRoom?.id]);
 
   const handleSend = async () => {
     if (!inputValue.trim()) return;
@@ -122,7 +105,7 @@ function ChatWithMessages({
 
           <div className={styles.user_info}>
             <Avatar avatar={selectedRoom.avatar} name={selectedRoom.name}/>
-            <div className={styles.name}>
+            <div className={styles.name_and_status}>
               <UserName name={selectedRoom.name} />
             </div>
           </div>
