@@ -90,7 +90,7 @@ function Profile({ setActiveTab, setIsAuth }) {
 
             setProfile(prev => ({
                 ...prev,
-                avatar: `${API}${data.avatar}`
+                avatar: data.avatar
             }));
 
         } catch (err) {
@@ -122,7 +122,7 @@ function Profile({ setActiveTab, setIsAuth }) {
                 {profile.avatar ? (
 
                     <img
-                        src={profile.avatar}
+                        src={`${API}${profile.avatar}`}
                         alt="avatar"
                     />
 
