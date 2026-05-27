@@ -22,59 +22,50 @@ function ChatWithMessages({
   const [inputValue, setInputValue] = useState('');
   const [messages, setMessages] = useState([]);
 
-   useEffect(() => {
-      const loadMessages = async () => {
-        if (!selectedRoom?.id) return;
+  useEffect(() => {
+    let interval;
 
-        const session = localStorage.getItem('session');
+    const loadMessages = async (reset = false) => {
+      if (!selectedRoom?.id) return;
 
-        try {
-          const res = await fetch(
-            `${API}/api/messages/${selectedRoom.id}`,
-            {
-              headers: {
-                Authorization: `Bearer ${session}`
-              }
-            }
-          );
+      const session = localStorage.getItem('session');
 
-          const data = await res.json();
+      try {
+        const res = await fetch(`${API}/api/messages/${selectedRoom.id}`, {
+          headers: {
+            Authorization: `Bearer ${session}`
+          }
+        });
 
-          setMessages(prev => {
-            const map = new Map(
-              prev.map(m => [m.id, m])
-            );
+        const data = await res.json();
 
-            data.forEach(m => {
-              map.set(m.id, m);
-            });
-
-            return Array
-              .from(map.values())
-              .sort(
-                (a, b) =>
-                  new Date(a.sendedAt) -
-                  new Date(b.sendedAt)
-              );
-          });
-
-        } catch (err) {
-          console.log(err);
+        if (reset) {
+          setMessages(data);
+          setScrollReason('open');
+          return;
         }
-      };
 
-    loadMessages();
+        setMessages(prev => {
+          const map = new Map(prev.map(m => [m.id, m]));
+          data.forEach(m => map.set(m.id, m));
 
-    setScrollReason('open');
+          return Array.from(map.values()).sort(
+            (a, b) => new Date(a.sendedAt) - new Date(b.sendedAt)
+          );
+        });
+      } catch (err) {
+        console.log(err);
+      }
+    };
 
-    const interval = setInterval(() => {
-      loadMessages();
+    setMessages([]);
+    loadMessages(true);
+
+    interval = setInterval(() => {
+      loadMessages(false);
     }, 3000);
 
-
     return () => clearInterval(interval);
-
-
   }, [selectedRoom?.id]);
 
   const handleSend = async () => {
