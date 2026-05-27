@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './profile.module.css';
 
@@ -7,8 +7,6 @@ const API = import.meta.env.VITE_API_URL;
 function Profile({ setActiveTab, setIsAuth }) {
 
     const navigate = useNavigate();
-
-    const fileInputRef = useRef(null);
 
     const [profile, setProfile] = useState({
         id: '',
@@ -21,29 +19,29 @@ function Profile({ setActiveTab, setIsAuth }) {
 
         const request = async () => {
 
-            const session = localStorage.getItem('session');
+            const session =
+                localStorage.getItem('session');
 
             try {
 
-                const res = await fetch(`${API}/api/auth/profile`, {
-                    method: 'GET',
-                    headers: {
-                        Authorization: `Bearer ${session}`
+                const res = await fetch(
+                    `${API}/api/auth/profile`,
+                    {
+                        headers: {
+                            Authorization: `Bearer ${session}`
+                        }
                     }
-                });
+                );
 
                 const data = await res.json();
 
                 if (data.success) {
 
-                    const savedAvatar =
-                        localStorage.getItem(`avatar_${data.id}`);
-
                     setProfile({
+                        id: data.id,
                         name: data.name,
                         number: data.number,
-                        id: data.id,
-                        avatar: savedAvatar || ''
+                        avatar: data.avatar || ''
                     });
 
                 }
@@ -51,39 +49,53 @@ function Profile({ setActiveTab, setIsAuth }) {
             } catch (err) {
                 console.log(err);
             }
-
         };
 
         request();
 
     }, []);
 
-    const handleAvatarChange = (e) => {
+    const handleUploadAvatar = async (e) => {
 
         const file = e.target.files[0];
 
         if (!file) return;
 
-        const reader = new FileReader();
+        const session =
+            localStorage.getItem('session');
 
-        reader.onloadend = () => {
+        const formData = new FormData();
 
-            const base64 = reader.result;
+        formData.append('file', file);
 
-            localStorage.setItem(
-                `avatar_${profile.id}`,
-                base64
+        try {
+
+            const res = await fetch(
+                `${API}/api/auth/upload-avatar`,
+                {
+                    method: 'POST',
+                    headers: {
+                        Authorization: `Bearer ${session}`
+                    },
+                    body: formData
+                }
             );
+
+            const data = await res.json();
+
+            if (!data.success) {
+                console.log(data.error);
+                return;
+            }
 
             setProfile(prev => ({
                 ...prev,
-                avatar: base64
+                avatar: `${API}${data.avatar}`
             }));
 
-        };
-
-        reader.readAsDataURL(file);
-
+        } catch (err) {
+            console.log(err);
+        }
     };
 
     const logout = () => {
@@ -93,7 +105,6 @@ function Profile({ setActiveTab, setIsAuth }) {
         setIsAuth(false);
 
         navigate('/');
-
     };
 
     return (
@@ -133,20 +144,18 @@ function Profile({ setActiveTab, setIsAuth }) {
                 <p>#{profile.number}</p>
             </div>
 
-            <input
-                type="file"
-                accept="image/*"
-                ref={fileInputRef}
-                style={{ display: 'none' }}
-                onChange={handleAvatarChange}
-            />
+            <label className={styles.uploadBtn}>
 
-            <button
-                className={styles.uploadBtn}
-                onClick={() => fileInputRef.current.click()}
-            >
-                Изменить аватар
-            </button>
+                Загрузить аватар
+
+                <input
+                    type="file"
+                    accept="image/*"
+                    hidden
+                    onChange={handleUploadAvatar}
+                />
+
+            </label>
 
             <button
                 className={styles.logoutBtn}

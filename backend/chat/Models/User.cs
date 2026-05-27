@@ -12,6 +12,8 @@ public class User
 
     public string HashPassword { get; set; } = string.Empty;
 
+    public string? Avatar { get; set;} = string.Empty;
+
     public List<Message> SentMessages { get; set; } = [];
 
     public List<Message> ReceivedMessages { get; set; } = [];

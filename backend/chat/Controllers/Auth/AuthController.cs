@@ -6,7 +6,9 @@ namespace chat.Controllers.Auth;
 
 [ApiController]
 [Route("api/[controller]")]
-public class AuthController(AuthService authService) : ControllerBase
+public class AuthController(
+    AuthService authService,
+    AvatarService avatarService) : ControllerBase
 {
     [HttpPost("register")]
     public async Task<IActionResult> Register([FromBody] RegisterDto dto)
@@ -97,5 +99,25 @@ public class AuthController(AuthService authService) : ControllerBase
                 query);
 
         return Ok(users);
+    }
+
+    [HttpPost("upload-avatar")]
+    public async Task<IActionResult> UploadAvatar(IFormFile file)
+    {
+        var session = Request.Headers.Authorization
+            .ToString()
+            .Replace("Bearer ", "");
+
+        var avatar =
+            await avatarService.UploadAvatar(
+                session,
+                file
+            );
+
+        return Ok(new
+        {
+            success = true,
+            avatar
+        });
     }
 }
