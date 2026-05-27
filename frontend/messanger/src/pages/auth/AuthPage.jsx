@@ -22,32 +22,30 @@ function AuthPage({setIsAuth}) {
     useEffect(() => {
         const checkAuth = async () => {
             const session = localStorage.getItem('session');
+
             if (!session) return;
 
             try {
-            const res = await fetch(`${API}/auth/me`, {
-                headers: {
-                Authorization: `Bearer ${session}`
-                }
-            });
+                const res = await fetch(`${API}/api/auth/me`, {
+                    method: 'GET',
+                    headers: {
+                        Authorization: `Bearer ${session}`
+                    }
+                });
+                console.log(res);
+                
+                if (res.success) {
+                    navigate('/chat');
+                } 
 
-            const data = await res.json();
-
-            if (data.success) {
-                setIsAuth(true);
-                navigate('/chat');
-            } else {
-                localStorage.removeItem('session');
-                setIsAuth(false);
-            }
             } catch (err) {
-            localStorage.removeItem('session');
-            setIsAuth(false);
+                console.log(err);
+                localStorage.removeItem('session');
             }
         };
 
         checkAuth();
-    }, [navigate, setIsAuth]);
+    }, []);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -84,74 +82,44 @@ function AuthPage({setIsAuth}) {
         if (!validateForm()) return;
 
         try {
-
             let response;
 
             if (mode === 'register') {
-
                 response = await registerUser(
                     formData.username,
                     formData.password
                 );
 
                 if (!response.success) {
-
-                    toast.error(
-                        response.error || 'Ошибка регистрации'
-                    );
-
+                    toast.error(response.error);
                     return;
                 }
 
-                toast.success(
-                    response.mes || 'Успешная регистрация'
-                );
-
+                toast.success(response.mes);
                 return;
-
             } else {
-
                 response = await loginUser(
                     formData.username,
                     formData.password
                 );
 
                 if (!response.success) {
-
-                    toast.error(
-                        response.error || 'Неверный логин или пароль'
-                    );
-
+                    toast.error(response.error);
                     return;
                 }
 
                 const session = response.session;
 
-                localStorage.setItem(
-                    'session',
-                    session
-                );
+                localStorage.setItem('session', session);
 
-                toast.success(
-                    response.mes || 'Успешный вход'
-                );
-
+                toast.success(response.mes);
                 setIsAuth(true);
-
                 navigate('/chat');
-
             }
 
         } catch (error) {
-
             console.log(error);
-
-            toast.error(
-                error.message || 'Ошибка сервера'
-            );
-
         }
-
     };
 
     return (
