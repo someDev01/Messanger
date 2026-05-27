@@ -38,7 +38,11 @@ function ChatWithMessages({
 
       setMessages(prev => {
         const map = new Map(prev.map(m => [m.id, m]));
-        data.forEach(m => map.set(m.id, m));
+
+        data.forEach(m => {
+          map.set(m.id, m);
+        });
+
         return Array.from(map.values()).sort(
           (a, b) => new Date(a.sendedAt) - new Date(b.sendedAt)
         );
