@@ -7,6 +7,7 @@ import UserNavigation from '../../ui/user_navigation/UserNavigation';
 
 import styles from '../side_bar/side_bar.module.css';
 import { User } from 'lucide-react';
+import Avatar from '../../ui/avatar/Avatar';
 
 const API = import.meta.env.VITE_API_URL;
 
@@ -157,14 +158,7 @@ function SideBar({
                     >
 
                         <div className={styles.search_avatar}>
-                            {user?.avatar ? (
-                                <img
-                                    src={`${API}${user.avatar}`}
-                                    alt="avatar"
-                                />
-                            ) : (
-                                user?.name[0]
-                            )}
+                            <Avatar avatar={user.avatar} name={user.name}/>
                         </div>
 
                         <div className={styles.search_info}>
