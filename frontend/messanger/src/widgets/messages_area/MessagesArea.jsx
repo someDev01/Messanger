@@ -16,13 +16,14 @@ function MessagesArea({
   useEffect(() => {
     if (!scrollReason) return;
 
-    bottomRef.current?.scrollIntoView({
-      behavior: 'smooth',
-      block: 'end'
+    requestAnimationFrame(() => {
+      bottomRef.current?.scrollIntoView({
+        behavior: 'smooth',
+        block: 'end'
+      });
+      setScrollReason(null);
     });
-
-    setScrollReason(null);
-  }, [messages, scrollReason, setScrollReason]);
+  }, [scrollReason, setScrollReason]);
 
   return (
     <div className={styles.messages_list}>

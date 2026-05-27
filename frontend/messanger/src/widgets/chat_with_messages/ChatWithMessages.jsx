@@ -40,7 +40,7 @@ function ChatWithMessages({
     };
 
     loadMessages();
-  }, [selectedRoom]);
+  }, [selectedRoom?.id]);
 
   const handleSend = async () => {
     if (!inputValue.trim()) return;
