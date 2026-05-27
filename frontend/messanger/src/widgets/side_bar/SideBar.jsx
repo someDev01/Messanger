@@ -27,12 +27,12 @@ function SideBar({
     const [users, setUsers] = useState([]);
 
     const handleSearch = async (e) => {
-
         const value = e.target.value;
-
         setSearch(value);
 
-        if (!value.trim()) {
+        const query = value.trim();
+
+        if (!query) {
             setUsers([]);
             return;
         }
@@ -40,20 +40,20 @@ function SideBar({
         try {
             const session = localStorage.getItem('session');
             const res = await fetch(
-                `${API}/api/auth/search?query=${value}`,
-                {
-                    headers:{
-                        Authorization: `Bearer ${session}`
-                    }
+            `${API}/api/auth/search?query=${encodeURIComponent(query)}`,
+            {
+                headers: {
+                Authorization: `Bearer ${session}`
                 }
+            }
             );
 
             const data = await res.json();
 
-            setUsers(data);
-
+            setUsers(Array.isArray(data) ? data : []);
         } catch (err) {
             console.log(err);
+            setUsers([]);
         }
     };
 
