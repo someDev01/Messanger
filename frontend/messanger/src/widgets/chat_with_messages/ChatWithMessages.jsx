@@ -23,36 +23,64 @@ function ChatWithMessages({
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
-    const loadMessages = async () => {
-      if (!selectedRoom?.id) return;
 
-      const session = localStorage.getItem('session');
+      const loadMessages = async () => {
 
-      const res = await fetch(`${API}/api/messages/${selectedRoom.id}`, {
-        headers: {
-          Authorization: `Bearer ${session}`
+        if (!selectedRoom?.id) return;
+
+        const session = localStorage.getItem('session');
+
+        try {
+
+          const res = await fetch(
+            `${API}/api/messages/${selectedRoom.id}`,
+            {
+              headers: {
+                Authorization: `Bearer ${session}`
+              }
+            }
+          );
+
+          const data = await res.json();
+
+          setMessages(prev => {
+
+            const map = new Map(
+              prev.map(m => [m.id, m])
+            );
+
+            data.forEach(m => {
+              map.set(m.id, m);
+            });
+
+            return Array
+              .from(map.values())
+              .sort(
+                (a, b) =>
+                  new Date(a.sendedAt) -
+                  new Date(b.sendedAt)
+              );
+          });
+
+        } catch (err) {
+          console.log(err);
         }
-      });
+      };
 
-      const data = await res.json();
+  // первая загрузка сообщений
+  loadMessages();
 
-      setMessages(prev => {
-        const map = new Map(prev.map(m => [m.id, m]));
+  // скролл вниз только при открытии чата
+  setScrollReason('open');
 
-        data.forEach(m => {
-          map.set(m.id, m);
-        });
-
-        return Array.from(map.values()).sort(
-          (a, b) => new Date(a.sendedAt) - new Date(b.sendedAt)
-        );
-      });
-
-      setScrollReason('open');
-    };
-
+  // обновление сообщений каждые 3 секунды
+  const interval = setInterval(() => {
     loadMessages();
-  }, [selectedRoom?.id]);
+  }, 3000);
+
+  return () => clearInterval(interval);
+
+}, [selectedRoom?.id]);
 
   const handleSend = async () => {
     if (!inputValue.trim()) return;
