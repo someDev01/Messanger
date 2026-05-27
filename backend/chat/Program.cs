@@ -1,6 +1,7 @@
 using chat.Db;
 using chat.Dtos;
 using chat.Services.Auth;
+using chat.Services.Avatar;
 using chat.Services.Message;
 using chat.Validators;
 using FluentValidation;
