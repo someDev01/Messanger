@@ -1,7 +1,7 @@
-html, body{
+html, body, #root{
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  height: 100vh;
+  height: 100%;
   background-color: rgb(247, 247, 247);
 }

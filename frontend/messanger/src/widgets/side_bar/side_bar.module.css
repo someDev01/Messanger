@@ -53,13 +53,11 @@
     }
 
     .bottom_part{
-        position: absolute;
+
         display: flex;
         justify-content: center;
         align-items: center;
-        bottom: 0;
-        right: 0;
-        left: 0;
+
         padding: 6px 20px;
     }
 }
