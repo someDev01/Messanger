@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import Avatar from '../../ui/avatar/Avatar';
 import BackButton from '../../ui/back_button/BackButton';
-import Status from '../../ui/status/Status';
+
 import UserName from '../../ui/user_name/UserName';
 import ChatInput from '../chat_input/ChatInput';
 import MessagesArea from '../messages_area/MessagesArea';
@@ -127,7 +127,6 @@ function ChatWithMessages({
             <Avatar avatar={selectedRoom.avatar} name={selectedRoom.name}/>
             <div className={styles.name_and_status}>
               <UserName name={selectedRoom.name} />
-              <Status isActive={true} />
             </div>
           </div>
         </div>
