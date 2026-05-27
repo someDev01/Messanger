@@ -10,6 +10,8 @@ services:
       ConnectionStrings__DefaultConnection: Host=postgres;Port=5432;Database=chatdb;Username=postgres;Password=postgres
     depends_on:
       - postgres
+    volumes:
+      - ./backend/chat/wwwroot:/app/wwwroot
 
   frontend:
     build:
@@ -21,8 +23,6 @@ services:
       - "3000:80"
     depends_on:
       - backend
-    volumes:
-      -./backend/chat/wwwroot:/app/wwwroot
     
 
   postgres:
