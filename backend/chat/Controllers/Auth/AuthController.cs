@@ -1,5 +1,6 @@
 ﻿using chat.Dtos;
 using chat.Services.Auth;
+using chat.Services.Avatar;
 using Microsoft.AspNetCore.Mvc;
 
 namespace chat.Controllers.Auth;
