@@ -4,7 +4,7 @@ const API = import.meta.env.VITE_API_URL;
 function Avatar({avatar, name}){
     return(
         <div className={styles.icon}>
-            {user.avatar ? (
+            {avatar ? (
                 <img
                     src={`${API}${avatar}`}
                     alt="avatar"

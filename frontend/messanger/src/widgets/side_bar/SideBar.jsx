@@ -157,13 +157,13 @@ function SideBar({
                     >
 
                         <div className={styles.search_avatar}>
-                            {user.avatar ? (
+                            {user?.avatar ? (
                                 <img
                                     src={`${API}${user.avatar}`}
                                     alt="avatar"
                                 />
                             ) : (
-                                user.name[0]
+                                user?.name[0]
                             )}
                         </div>
 
