@@ -25,7 +25,7 @@ function AuthPage({setIsAuth}) {
             if (!session) return;
 
             try {
-            const res = await fetch(`${API}/api/auth/me`, {
+            const res = await fetch(`${API}/auth/me`, {
                 headers: {
                 Authorization: `Bearer ${session}`
                 }
