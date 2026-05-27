@@ -84,44 +84,74 @@ function AuthPage({setIsAuth}) {
         if (!validateForm()) return;
 
         try {
+
             let response;
 
             if (mode === 'register') {
+
                 response = await registerUser(
                     formData.username,
                     formData.password
                 );
 
                 if (!response.success) {
-                    toast.error(response.error);
+
+                    toast.error(
+                        response.error || 'Ошибка регистрации'
+                    );
+
                     return;
                 }
 
-                toast.success(response.mes);
+                toast.success(
+                    response.mes || 'Успешная регистрация'
+                );
+
                 return;
+
             } else {
+
                 response = await loginUser(
                     formData.username,
                     formData.password
                 );
 
                 if (!response.success) {
-                    toast.error(response.error);
+
+                    toast.error(
+                        response.error || 'Неверный логин или пароль'
+                    );
+
                     return;
                 }
 
                 const session = response.session;
 
-                localStorage.setItem('session', session);
+                localStorage.setItem(
+                    'session',
+                    session
+                );
 
-                toast.success(response.mes);
+                toast.success(
+                    response.mes || 'Успешный вход'
+                );
+
                 setIsAuth(true);
+
                 navigate('/chat');
+
             }
 
         } catch (error) {
+
             console.log(error);
+
+            toast.error(
+                error.message || 'Ошибка сервера'
+            );
+
         }
+
     };
 
     return (
