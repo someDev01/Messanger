@@ -24,48 +24,45 @@ function ChatWithMessages({
 
   useEffect(() => {
 
-      const loadMessages = async () => {
+      useEffect(() => {
+        const loadMessages = async () => {
+          if (!selectedRoom?.id) return;
 
-        if (!selectedRoom?.id) return;
+          setMessages([]);
+          setScrollReason(null);
 
-        const session = localStorage.getItem('session');
+          const session = localStorage.getItem('session');
 
-        try {
-
-          const res = await fetch(
-            `${API}/api/messages/${selectedRoom.id}`,
-            {
+          try {
+            const res = await fetch(`${API}/api/messages/${selectedRoom.id}`, {
               headers: {
                 Authorization: `Bearer ${session}`
               }
-            }
-          );
-
-          const data = await res.json();
-
-          setMessages(prev => {
-
-            const map = new Map(
-              prev.map(m => [m.id, m])
-            );
-
-            data.forEach(m => {
-              map.set(m.id, m);
             });
 
-            return Array
-              .from(map.values())
-              .sort(
-                (a, b) =>
-                  new Date(a.sendedAt) -
-                  new Date(b.sendedAt)
-              );
-          });
+            const data = await res.json();
 
-        } catch (err) {
-          console.log(err);
-        }
-      };
+            setMessages(prev => {
+              const map = new Map(prev.map(m => [m.id, m]));
+              data.forEach(m => map.set(m.id, m));
+
+              return Array.from(map.values()).sort(
+                (a, b) => new Date(a.sendedAt) - new Date(b.sendedAt)
+              );
+            });
+
+            setScrollReason('open');
+          } catch (err) {
+            console.log(err);
+          }
+        };
+
+        loadMessages();
+
+        const interval = setInterval(loadMessages, 3000);
+
+        return () => clearInterval(interval);
+      }, [selectedRoom?.id]);
 
   // первая загрузка сообщений
   loadMessages();
