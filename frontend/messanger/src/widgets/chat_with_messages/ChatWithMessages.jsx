@@ -19,6 +19,8 @@ function ChatWithMessages({
     currentUserId
 }) {
 
+    const [shouldScroll, setShouldScroll] = useState(false);
+
     const [inputValue, setInputValue] = useState('');
 
     const [messages, setMessages] =useState([]);
@@ -117,6 +119,8 @@ function ChatWithMessages({
                 <MessagesArea
                     messages={messages}
                     currentUserId={currentUserId}
+                    shouldScroll={shouldScroll}
+                    setShouldScroll={setShouldScroll}
                 />
             </div>
             <div className={styles.bottom_part}>

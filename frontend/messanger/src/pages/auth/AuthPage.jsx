@@ -22,30 +22,32 @@ function AuthPage({setIsAuth}) {
     useEffect(() => {
         const checkAuth = async () => {
             const session = localStorage.getItem('session');
-
             if (!session) return;
 
             try {
-                const res = await fetch(`${API}/api/auth/me`, {
-                    method: 'GET',
-                    headers: {
-                        Authorization: `Bearer ${session}`
-                    }
-                });
-                console.log(res);
-                
-                if (res.success) {
-                    navigate('/chat');
-                } 
+            const res = await fetch(`${API}/api/auth/me`, {
+                headers: {
+                Authorization: `Bearer ${session}`
+                }
+            });
 
-            } catch (err) {
-                console.log(err);
+            const data = await res.json();
+
+            if (data.success) {
+                setIsAuth(true);
+                navigate('/chat');
+            } else {
                 localStorage.removeItem('session');
+                setIsAuth(false);
+            }
+            } catch (err) {
+            localStorage.removeItem('session');
+            setIsAuth(false);
             }
         };
 
         checkAuth();
-    }, []);
+    }, [navigate, setIsAuth]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;

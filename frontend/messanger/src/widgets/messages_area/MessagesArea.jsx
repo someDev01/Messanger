@@ -6,81 +6,66 @@ import NoMessages from '../../ui/no_messages/NoMessages';
 import styles from '../messages_area/messages_area.module.css';
 
 function MessagesArea({
-    messages,
-    currentUserId
+  messages,
+  currentUserId,
+  shouldScroll,
+  setShouldScroll
 }) {
+  const bottomRef = useRef(null);
 
-    const bottomRef = useRef(null);
+  useEffect(() => {
+    if (!shouldScroll) return;
 
-    useEffect(() => {
-        bottomRef.current?.scrollIntoView({
-            behavior: 'smooth'
-        });
-    }, [messages]);
+    bottomRef.current?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'end'
+    });
 
-    return (
-        <div className={styles.messages_list}>
+    setShouldScroll(false);
+  }, [messages, shouldScroll, setShouldScroll]);
 
-            {messages.length === 0 && <NoMessages />}
+  return (
+    <div className={styles.messages_list}>
+      {messages.length === 0 && <NoMessages />}
 
-            {messages.map((message, index) => {
+      {messages.map((message, index) => {
+        const currentDate = new Date(message.sendedAt).toDateString();
+        const prevDate =
+          index > 0
+            ? new Date(messages[index - 1].sendedAt).toDateString()
+            : null;
 
-                const currentDate =
-                    new Date(message.sendedAt).toDateString();
+        const showDate = currentDate !== prevDate;
+        const isMe = message.senderId === currentUserId;
 
-                const prevDate =
-                    index > 0
-                        ? new Date(
-                            messages[index - 1].sendedAt
-                        ).toDateString()
-                        : null;
+        return (
+          <div key={message.id}>
+            {showDate && (
+              <div className={styles.date_block}>
+                <MessageDate date={message.sendedAt} />
+              </div>
+            )}
 
-                const showDate =
-                    currentDate !== prevDate;
+            <div
+              className={styles.row}
+              style={{
+                justifyContent: isMe ? 'end' : 'start'
+              }}
+            >
+              <Message
+                isMe={isMe}
+                message={message.text}
+                senderName={!isMe ? message.senderName : null}
+                createdAt={message.sendedAt}
+              />
+            </div>
+          </div>
+        );
+      })}
 
-                const isMe =
-                    message.senderId === currentUserId;
-
-                return (
-                    <div
-                        key={message.id}
-                    >
-                        {showDate && (
-                            <div className={styles.date_block}>
-                                <MessageDate
-                                    date={message.sendedAt}
-                                />
-                            </div>
-                        )}
-
-                        <div
-                            className={styles.row}
-                            style={{
-                                justifyContent:
-                                    isMe
-                                        ? 'end'
-                                        : 'start'
-                            }}
-                        >
-                            <Message
-                                isMe={isMe}
-                                message={message.text}
-                                senderName={
-                                    !isMe
-                                        ? message.senderName
-                                        : null
-                                }
-                                createdAt={message.sendedAt}
-                            />
-                        </div>
-                    </div>
-                );
-            })}
-
-            <div ref={bottomRef}></div>
-
-        </div>
-    );
+      <div ref={bottomRef} />
+    </div>
+  );
 }
 
 export default MessagesArea;
