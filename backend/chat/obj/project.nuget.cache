@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "7OVLPkHTUug=",
+  "dgSpecHash": "t9AMHM44Lzo=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Lenovo\\source\\repos\\chat\\chat\\chat.csproj",
+  "projectFilePath": "C:\\Users\\Lenovo\\my_projects\\test_deploy_project\\backend\\chat\\chat.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Lenovo\\.nuget\\packages\\bcrypt.net-next\\4.2.0\\bcrypt.net-next.4.2.0.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\fluentvalidation\\12.1.1\\fluentvalidation.12.1.1.nupkg.sha512",

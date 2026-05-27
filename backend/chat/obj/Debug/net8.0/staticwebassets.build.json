@@ -1,12 +1,20 @@
 {
   "Version": 1,
-  "Hash": "CtyoBW2/o/I5vDQpx1Jk0TpELdmbYlvF3cf+kESCCQA=",
+  "Hash": "OVQHNbFfZJmKFtpmPV6oAPoaNcjcsOZK6GLWKhcs1As=",
   "Source": "chat",
   "BasePath": "_content/chat",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "chat\\wwwroot",
+      "Source": "chat",
+      "ContentRoot": "C:\\Users\\Lenovo\\my_projects\\test_deploy_project\\backend\\chat\\wwwroot\\",
+      "BasePath": "_content/chat",
+      "Pattern": "**"
+    }
+  ],
   "Assets": [],
   "Endpoints": []
 }
