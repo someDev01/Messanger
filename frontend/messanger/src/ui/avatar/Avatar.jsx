@@ -1,9 +1,17 @@
 import styles from '../avatar/avatar.module.css';
+const API = import.meta.env.VITE_API_URL;
 
-function Avatar(){
+function Avatar({avatar, name}){
     return(
         <div className={styles.icon}>
-            <p>AV</p>
+            {user.avatar ? (
+                <img
+                    src={`${API}${avatar}`}
+                    alt="avatar"
+                />
+            ) : (
+                name[0]
+            )}
         </div>
     )
 }

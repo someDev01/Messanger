@@ -118,6 +118,7 @@ public class AuthService(
             .Select(u => new SearchUserDto(
                 u.Id,
                 u.Name,
+                u.Avatar,
                 u.Number
             ))
 

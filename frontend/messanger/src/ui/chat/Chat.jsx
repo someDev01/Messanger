@@ -8,6 +8,7 @@ function Chat({
     active,
     onClick,
     name,
+    avatar,
     receivedLastMessage,
     who,
     date
@@ -18,7 +19,7 @@ function Chat({
             className={`${styles.chat} ${active ? styles.active : ''}`}
             onClick={onClick}
         >
-            <Avatar />
+            <Avatar avatar={avatar} name={name}/>
 
             <div className={styles.name_with_message_part}>
                 <UserName name={name} />

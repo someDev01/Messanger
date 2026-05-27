@@ -70,6 +70,7 @@ public class MessageService(DataContext context)
                 return new ChatPreviewDto(
                     otherUser.Id,
                     otherUser.Name,
+                    otherUser.Avatar,
                     lastMessage.Text,
                     lastMessage.SenderId == currentUser.Id
                         ? "Вы"

@@ -62,6 +62,7 @@ function SideBar({
         const room = {
             id: user.id,
             name: user.name,
+            avatar: user.avatar,
             lastMessage: '',
             lastSenderName: ''
         };
@@ -156,7 +157,14 @@ function SideBar({
                     >
 
                         <div className={styles.search_avatar}>
-                            {user.name[0]}
+                            {user.avatar ? (
+                                <img
+                                    src={`${API}${user.avatar}`}
+                                    alt="avatar"
+                                />
+                            ) : (
+                                user.name[0]
+                            )}
                         </div>
 
                         <div className={styles.search_info}>
@@ -196,6 +204,7 @@ function SideBar({
                             }}
 
                             name={room.name}
+                            avatar={room.avatar}
 
                             receivedLastMessage={
                                 room.lastMessage
