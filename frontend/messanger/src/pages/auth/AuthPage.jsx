@@ -6,181 +6,222 @@ import { toast } from 'react-toastify';
 
 const API = import.meta.env.VITE_API_URL;
 
-function AuthPage({setIsAuth}) {
-    const [mode, setMode] = useState('login');
-    const [formData, setFormData] = useState({
-        username: '',
-        password: '',
-    });
-    const [errors, setErrors] = useState({
-        username: '',
-        password: '',
-    });
+function AuthPage({ setIsAuth }) {
+  const [mode, setMode] = useState('login');
 
-    const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    username: '',
+    password: '',
+  });
 
-    useEffect(() => {
-        const checkAuth = async () => {
-            const session = localStorage.getItem('session');
+  const [errors, setErrors] = useState({
+    username: '',
+    password: '',
+  });
 
-            if (!session) return;
+  const navigate = useNavigate();
 
-            try {
-                const res = await fetch(`${API}/api/auth/me`, {
-                    method: 'GET',
-                    headers: {
-                        Authorization: `Bearer ${session}`
-                    }
-                });
-                console.log(res);
-                
-                if (res.success) {
-                    navigate('/chat');
-                } 
+  useEffect(() => {
+    const checkAuth = async () => {
+      const session = localStorage.getItem('session');
 
-            } catch (err) {
-                console.log(err);
-                localStorage.removeItem('session');
-            }
-        };
+      if (!session) return;
 
-        checkAuth();
-    }, []);
+      try {
+        const res = await fetch(`${API}/api/auth/me`, {
+          method: 'GET',
+          headers: {
+            Authorization: `Bearer ${session}`,
+          },
+        });
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData((prev) => ({
-            ...prev,
-            [name]: value
-        }));
+        const data = await res.json();
 
-        if (errors[name]) {
-            setErrors((prev) => ({ ...prev, [name]: '' }));
+        if (data.success) {
+          setIsAuth(true);
+          navigate('/chat');
+        } else {
+          localStorage.removeItem('session');
+          setIsAuth(false);
         }
+      } catch (err) {
+        console.log(err);
+        localStorage.removeItem('session');
+        setIsAuth(false);
+      }
     };
 
-    const validateForm = () => {
-        const newErrors = {
-            username: '',
-            password: '',
-        };
+    checkAuth();
+  }, [navigate, setIsAuth]);
 
-        if (!formData.username.trim()) {
-            newErrors.username = 'Введите логин';
-        }
-        if (!formData.password.trim()) {
-            newErrors.password = 'Введите пароль';
-        }
+  const handleChange = (e) => {
+    const { name, value } = e.target;
 
-        setErrors(newErrors);
-        return !Object.values(newErrors).some((err) => err);
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+
+    if (errors[name]) {
+      setErrors((prev) => ({
+        ...prev,
+        [name]: '',
+      }));
+    }
+  };
+
+  const validateForm = () => {
+    const newErrors = {
+      username: '',
+      password: '',
     };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    if (!formData.username.trim()) {
+      newErrors.username = 'Введите логин';
+    }
 
-        if (!validateForm()) return;
+    if (!formData.password.trim()) {
+      newErrors.password = 'Введите пароль';
+    }
 
-        try {
-            let response;
+    setErrors(newErrors);
 
-            if (mode === 'register') {
-                response = await registerUser(
-                    formData.username,
-                    formData.password
-                );
+    return !Object.values(newErrors).some(Boolean);
+  };
 
-                if (!response.success) {
-                    toast.error(response.error);
-                    return;
-                }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-                toast.success(response.mes);
-                return;
-            } else {
-                response = await loginUser(
-                    formData.username,
-                    formData.password
-                );
+    if (!validateForm()) return;
 
-                if (!response.success) {
-                    toast.error(response.error);
-                    return;
-                }
+    try {
+      let response;
 
-                const session = response.session;
+      if (mode === 'register') {
+        response = await registerUser(
+          formData.username,
+          formData.password
+        );
 
-                localStorage.setItem('session', session);
-
-                toast.success(response.mes);
-                setIsAuth(true);
-                navigate('/chat');
-            }
-
-        } catch (error) {
-            console.log(error);
+        if (!response.success) {
+          toast.error(response.error || 'Ошибка регистрации');
+          return;
         }
-    };
 
-    return (
+        toast.success(response.mes || 'Успешная регистрация');
+        setMode('login');
+        return;
+      }
+
+
+      response = await loginUser(
+        formData.username,
+        formData.password
+      );
+
+      if (!response.success) {
+        toast.error(response.error || 'Неверный логин или пароль');
+        return;
+      }
+
+      localStorage.setItem('session', response.session);
+
+      setIsAuth(true);
+      toast.success(response.mes || 'Успешный вход');
+
+      navigate('/chat');
+    } catch (error) {
+      console.log(error);
+      toast.error('Ошибка сервера');
+    }
+  };
+
+  return (
     <div className={styles.page}>
-        <div className={styles.card}>
+      <div className={styles.card}>
+
         <div className={styles.topPart}>
-            <h1>{mode === 'login' ? 'Авторизация' : 'Регистрация'}</h1>
-            <p>{mode === 'login' ? 'Войдите в свой аккаунт' : 'Создайте новый аккаунт'}</p>
+          <h1>
+            {mode === 'login' ? 'Авторизация' : 'Регистрация'}
+          </h1>
+
+          <p>
+            {mode === 'login'
+              ? 'Войдите в аккаунт'
+              : 'Создайте аккаунт'}
+          </p>
         </div>
 
         <div className={styles.switchButtons}>
-            <button
-                className={mode === 'login' ? styles.activeButton : styles.switchButton}
-                onClick={() => setMode('login')}
-            >
-                Вход
-            </button>
-            <button
-                className={mode === 'register' ? styles.activeButton : styles.switchButton}
-                onClick={() => setMode('register')}
-            >
-                Регистрация
-            </button>
+          <button
+            className={mode === 'login'
+              ? styles.activeButton
+              : styles.switchButton}
+            onClick={() => setMode('login')}
+          >
+            Вход
+          </button>
+
+          <button
+            className={mode === 'register'
+              ? styles.activeButton
+              : styles.switchButton}
+            onClick={() => setMode('register')}
+          >
+            Регистрация
+          </button>
         </div>
 
         <form className={styles.form} onSubmit={handleSubmit}>
-            <div className={styles.field}>
+
+          <div className={styles.field}>
             <label>Логин</label>
+
             <input
-                type="text"
-                name="username"
-                placeholder="Введите логин"
-                value={formData.username}
-                onChange={handleChange}
+              type="text"
+              name="username"
+              value={formData.username}
+              onChange={handleChange}
             />
+
             {errors.username && (
-                <span className={styles.error}>{errors.username}</span>
+              <span className={styles.error}>
+                {errors.username}
+              </span>
             )}
-            </div>
+          </div>
 
-            <div className={styles.field}>
+          <div className={styles.field}>
             <label>Пароль</label>
-            <input
-                type="password"
-                name="password"
-                placeholder="Введите пароль"
-                value={formData.password}
-                onChange={handleChange}
-            />
-            {errors.password && (
-                <span className={styles.error}>{errors.password}</span>
-            )}
-            </div>
 
-            <button type="submit" className={styles.submitButton}>
-            {mode === 'login' ? 'Войти' : 'Зарегистрироваться'}
-            </button>
+            <input
+              type="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+            />
+
+            {errors.password && (
+              <span className={styles.error}>
+                {errors.password}
+              </span>
+            )}
+          </div>
+
+          <button
+            type="submit"
+            className={styles.submitButton}
+          >
+            {mode === 'login'
+              ? 'Войти'
+              : 'Зарегистрироваться'}
+          </button>
+
         </form>
-        </div>
+
+      </div>
     </div>
-    );
+  );
 }
 
 export default AuthPage;

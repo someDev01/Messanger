@@ -21,6 +21,8 @@ services:
       - "3000:80"
     depends_on:
       - backend
+    volumes:
+      -./backend/chat/wwwroot:/app/wwwroot
     
 
   postgres:
