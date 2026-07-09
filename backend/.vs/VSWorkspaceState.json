@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\chat",
+    "\\chat\\Controllers",
+    "\\chat\\Controllers\\Auth",
+    "\\chat\\Controllers\\Message",
+    "\\chat\\Controllers\\Push",
+    "\\chat\\Db",
+    "\\chat\\Services",
+    "\\chat\\Services\\Auth",
+    "\\chat\\Services\\Message"
+  ],
+  "SelectedNode": "\\chat\\Services\\Auth\\AuthService.cs",
+  "PreviewInSolutionExplorer": false
+}

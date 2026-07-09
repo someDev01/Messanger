@@ -1,4 +1,6 @@
-﻿namespace chat.Models;
+﻿using chat.models;
+
+namespace chat.Models;
 
 public class User
 {
@@ -17,6 +19,8 @@ public class User
     public List<Message> SentMessages { get; set; } = [];
 
     public List<Message> ReceivedMessages { get; set; } = [];
+
+    public List<PushSubscription> PushSubscriptions { get; set; } = [];
 
     public DateTime CreatedAt { get; set; }
 }

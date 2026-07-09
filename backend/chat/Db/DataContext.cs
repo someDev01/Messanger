@@ -1,4 +1,5 @@
-﻿using chat.Models;
+﻿using chat.models;
+using chat.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace chat.Db;
@@ -6,6 +7,8 @@ namespace chat.Db;
 public class DataContext(DbContextOptions<DataContext> options): DbContext(options)
 {
     public DbSet<User> Users { get; set; }
+
+    public DbSet<PushSubscription> PushSubscriptions { get; set; }
 
     public DbSet<Message> Messages { get; set; }
 
@@ -28,5 +31,11 @@ public class DataContext(DbContextOptions<DataContext> options): DbContext(optio
         modelBuilder.Entity<User>()
             .HasIndex(i => i.Number)
             .IsUnique();
+
+        modelBuilder.Entity<PushSubscription>()
+            .HasOne(p => p.User)
+            .WithMany(u => u.PushSubscriptions)
+            .HasForeignKey(p => p.UserId)
+            .OnDelete(DeleteBehavior.Restrict);
     }
 }

@@ -2,6 +2,7 @@
 using chat.Dtos;
 using chat.Models;
 using FluentValidation;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Cryptography;
 
@@ -93,6 +94,28 @@ public class AuthService(
 
         return userId;
     }
+
+    public async Task<bool> ExistingAndSavePushSubscription(Guid userId, PushSubscriptionDto dto)
+    {
+        var existing = await context.PushSubscriptions.FirstOrDefaultAsync(p => p.UserId == userId && p.Endpoint == dto.Endpoint);
+        if(existing is null)
+        {
+            await context.PushSubscriptions.AddAsync(new models.PushSubscription
+            {
+                UserId = userId,
+                Endpoint = dto.Endpoint,
+                P256dh = dto.P256dh,
+                Auth = dto.Auth,
+                CreatedAt = DateTime.UtcNow,
+            });
+            await context.SaveChangesAsync();
+            return true;
+        }
+
+        return true;
+
+    }
+    
 
     public async Task<List<SearchUserDto>> SearchUsers(
     string session,

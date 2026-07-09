@@ -1,6 +1,8 @@
 ﻿using chat.Db;
 using chat.Dtos;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json;
+using WebPush;
 
 namespace chat.Services.Message;
 
@@ -22,6 +24,31 @@ public class MessageService(DataContext context)
 
         await context.Messages.AddAsync(message, cancellationToken);
         await context.SaveChangesAsync(cancellationToken);
+
+        var subs = await context.PushSubscriptions
+            .Where(p => p.UserId == dto.ReceiverId)
+            .ToListAsync();
+
+        var senderName = await context.Users.FirstOrDefaultAsync(u => u.Id == message.SenderId);
+        var paload = JsonSerializer.Serialize(new
+        {
+            title = senderId,
+            body = message.Text,
+            icon = ""
+        });
+
+        foreach(var sub in subs)
+        {
+            var subscription = new PushSubscription(sub.Endpoint, sub.P256dh, sub.Auth);
+            var vapidDetails = new VapidDetails(
+                "mailto: vocal.ru", 
+                "BF7hknOjK-AJprw9Kkec6wnn-Z8EU0S-bk9rCQufgmws22qPMhF1szd0ns1Wv9Ig7RM0kzFIJSXoJsbBDDVBfGQ",
+                "rI2RB69chRKcQy1ECtejNagAyx7oM63Dagpd4mvM4hM");
+            var client = new WebPushClient();
+
+            client.SendNotification(subscription, paload, vapidDetails);
+
+        }
 
         return new MessageDto(
             message.Id,

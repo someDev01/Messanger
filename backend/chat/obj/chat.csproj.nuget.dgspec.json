@@ -84,6 +84,10 @@
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.6.2, )"
+            },
+            "WebPush": {
+              "target": "Package",
+              "version": "[1.0.13, )"
             }
           },
           "imports": [

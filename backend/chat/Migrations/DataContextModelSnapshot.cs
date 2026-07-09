@@ -86,6 +86,37 @@ namespace chat.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("chat.models.PushSubscription", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Auth")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Endpoint")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("P256dh")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("PushSubscriptions");
+                });
+
             modelBuilder.Entity("chat.Models.Message", b =>
                 {
                     b.HasOne("chat.Models.User", "Receiver")
@@ -105,8 +136,21 @@ namespace chat.Migrations
                     b.Navigation("Sender");
                 });
 
+            modelBuilder.Entity("chat.models.PushSubscription", b =>
+                {
+                    b.HasOne("chat.Models.User", "User")
+                        .WithMany("PushSubscriptions")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("chat.Models.User", b =>
                 {
+                    b.Navigation("PushSubscriptions");
+
                     b.Navigation("ReceivedMessages");
 
                     b.Navigation("SentMessages");

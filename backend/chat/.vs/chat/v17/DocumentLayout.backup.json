@@ -1,34 +1,22 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Lenovo\\source\\repos\\chat\\",
+  "WorkspaceRootPath": "C:\\Users\\Lenovo\\my_projects\\test_deploy_project\\backend\\chat\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B35DE3A6-06B6-49FE-942D-C69C99B22EA5}|chat\\chat.csproj|c:\\users\\lenovo\\source\\repos\\chat\\chat\\services\\auth\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B35DE3A6-06B6-49FE-942D-C69C99B22EA5}|chat\\chat.csproj|solutionrelative:chat\\services\\auth\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{BAFE1D61-21D6-441F-975F-8074D4272D8E}|chat.csproj|c:\\users\\lenovo\\my_projects\\test_deploy_project\\backend\\chat\\services\\message\\messageservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BAFE1D61-21D6-441F-975F-8074D4272D8E}|chat.csproj|solutionrelative:services\\message\\messageservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B35DE3A6-06B6-49FE-942D-C69C99B22EA5}|chat\\chat.csproj|c:\\users\\lenovo\\source\\repos\\chat\\chat\\controllers\\message\\messagescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B35DE3A6-06B6-49FE-942D-C69C99B22EA5}|chat\\chat.csproj|solutionrelative:chat\\controllers\\message\\messagescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{BAFE1D61-21D6-441F-975F-8074D4272D8E}|chat.csproj|c:\\users\\lenovo\\my_projects\\test_deploy_project\\backend\\chat\\controllers\\push\\pushcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BAFE1D61-21D6-441F-975F-8074D4272D8E}|chat.csproj|solutionrelative:controllers\\push\\pushcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B35DE3A6-06B6-49FE-942D-C69C99B22EA5}|chat\\chat.csproj|c:\\users\\lenovo\\source\\repos\\chat\\chat\\dtos\\searchuserdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B35DE3A6-06B6-49FE-942D-C69C99B22EA5}|chat\\chat.csproj|solutionrelative:chat\\dtos\\searchuserdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{BAFE1D61-21D6-441F-975F-8074D4272D8E}|chat.csproj|c:\\users\\lenovo\\my_projects\\test_deploy_project\\backend\\chat\\controllers\\auth\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BAFE1D61-21D6-441F-975F-8074D4272D8E}|chat.csproj|solutionrelative:controllers\\auth\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B35DE3A6-06B6-49FE-942D-C69C99B22EA5}|chat\\chat.csproj|c:\\users\\lenovo\\source\\repos\\chat\\chat\\db\\datacontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B35DE3A6-06B6-49FE-942D-C69C99B22EA5}|chat\\chat.csproj|solutionrelative:chat\\db\\datacontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B35DE3A6-06B6-49FE-942D-C69C99B22EA5}|chat\\chat.csproj|c:\\users\\lenovo\\source\\repos\\chat\\chat\\controllers\\auth\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B35DE3A6-06B6-49FE-942D-C69C99B22EA5}|chat\\chat.csproj|solutionrelative:chat\\controllers\\auth\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B35DE3A6-06B6-49FE-942D-C69C99B22EA5}|chat\\chat.csproj|c:\\users\\lenovo\\source\\repos\\chat\\chat\\services\\message\\messageservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B35DE3A6-06B6-49FE-942D-C69C99B22EA5}|chat\\chat.csproj|solutionrelative:chat\\services\\message\\messageservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B35DE3A6-06B6-49FE-942D-C69C99B22EA5}|chat\\chat.csproj|c:\\users\\lenovo\\source\\repos\\chat\\chat\\dtos\\messagedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B35DE3A6-06B6-49FE-942D-C69C99B22EA5}|chat\\chat.csproj|solutionrelative:chat\\dtos\\messagedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{BAFE1D61-21D6-441F-975F-8074D4272D8E}|chat.csproj|c:\\users\\lenovo\\my_projects\\test_deploy_project\\backend\\chat\\services\\auth\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BAFE1D61-21D6-441F-975F-8074D4272D8E}|chat.csproj|solutionrelative:services\\auth\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -38,86 +26,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 283,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 3,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "DataContext.cs",
-              "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\chat\\chat\\Db\\DataContext.cs",
-              "RelativeDocumentMoniker": "chat\\Db\\DataContext.cs",
-              "ToolTip": "C:\\Users\\Lenovo\\source\\repos\\chat\\chat\\Db\\DataContext.cs",
-              "RelativeToolTip": "chat\\Db\\DataContext.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-25T18:26:55.35Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "SearchUserDto.cs",
-              "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\chat\\chat\\Dtos\\SearchUserDto.cs",
-              "RelativeDocumentMoniker": "chat\\Dtos\\SearchUserDto.cs",
-              "ToolTip": "C:\\Users\\Lenovo\\source\\repos\\chat\\chat\\Dtos\\SearchUserDto.cs",
-              "RelativeToolTip": "chat\\Dtos\\SearchUserDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAACAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-25T17:04:32.986Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "MessageDto.cs",
-              "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\chat\\chat\\Dtos\\MessageDto.cs",
-              "RelativeDocumentMoniker": "chat\\Dtos\\MessageDto.cs",
-              "ToolTip": "C:\\Users\\Lenovo\\source\\repos\\chat\\chat\\Dtos\\MessageDto.cs",
-              "RelativeToolTip": "chat\\Dtos\\MessageDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-25T16:31:45.829Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "MessagesController.cs",
-              "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\chat\\chat\\Controllers\\Message\\MessagesController.cs",
-              "RelativeDocumentMoniker": "chat\\Controllers\\Message\\MessagesController.cs",
-              "ToolTip": "C:\\Users\\Lenovo\\source\\repos\\chat\\chat\\Controllers\\Message\\MessagesController.cs",
-              "RelativeToolTip": "chat\\Controllers\\Message\\MessagesController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-25T15:54:35.703Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "MessageService.cs",
-              "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\chat\\chat\\Services\\Message\\MessageService.cs",
-              "RelativeDocumentMoniker": "chat\\Services\\Message\\MessageService.cs",
-              "ToolTip": "C:\\Users\\Lenovo\\source\\repos\\chat\\chat\\Services\\Message\\MessageService.cs",
-              "RelativeToolTip": "chat\\Services\\Message\\MessageService.cs",
-              "ViewState": "AgIAAC0AAAAAAAAAAAAAAE4AAAAOAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-25T15:41:52.914Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "AuthService.cs",
-              "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\chat\\chat\\Services\\Auth\\AuthService.cs",
-              "RelativeDocumentMoniker": "chat\\Services\\Auth\\AuthService.cs",
-              "ToolTip": "C:\\Users\\Lenovo\\source\\repos\\chat\\chat\\Services\\Auth\\AuthService.cs",
-              "RelativeToolTip": "chat\\Services\\Auth\\AuthService.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAABwAAAAfAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-25T13:46:17.426Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
@@ -132,15 +42,54 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "AuthController.cs",
-              "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\chat\\chat\\Controllers\\Auth\\AuthController.cs",
-              "RelativeDocumentMoniker": "chat\\Controllers\\Auth\\AuthController.cs",
-              "ToolTip": "C:\\Users\\Lenovo\\source\\repos\\chat\\chat\\Controllers\\Auth\\AuthController.cs",
-              "RelativeToolTip": "chat\\Controllers\\Auth\\AuthController.cs",
-              "ViewState": "AgIAAEgAAAAAAAAAAAAmwGMAAAAFAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "MessageService.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\my_projects\\test_deploy_project\\backend\\chat\\Services\\Message\\MessageService.cs",
+              "RelativeDocumentMoniker": "Services\\Message\\MessageService.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\my_projects\\test_deploy_project\\backend\\chat\\Services\\Message\\MessageService.cs",
+              "RelativeToolTip": "Services\\Message\\MessageService.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAACQAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-25T12:58:41.678Z",
+              "WhenOpened": "2026-07-09T22:40:07.111Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "PushController.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\my_projects\\test_deploy_project\\backend\\chat\\Controllers\\Push\\PushController.cs",
+              "RelativeDocumentMoniker": "Controllers\\Push\\PushController.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\my_projects\\test_deploy_project\\backend\\chat\\Controllers\\Push\\PushController.cs",
+              "RelativeToolTip": "Controllers\\Push\\PushController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-09T22:39:21.22Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\my_projects\\test_deploy_project\\backend\\chat\\Controllers\\Auth\\AuthController.cs",
+              "RelativeDocumentMoniker": "Controllers\\Auth\\AuthController.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\my_projects\\test_deploy_project\\backend\\chat\\Controllers\\Auth\\AuthController.cs",
+              "RelativeToolTip": "Controllers\\Auth\\AuthController.cs",
+              "ViewState": "AgIAADwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-09T22:39:08.753Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AuthService.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\my_projects\\test_deploy_project\\backend\\chat\\Services\\Auth\\AuthService.cs",
+              "RelativeDocumentMoniker": "Services\\Auth\\AuthService.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\my_projects\\test_deploy_project\\backend\\chat\\Services\\Auth\\AuthService.cs",
+              "RelativeToolTip": "Services\\Auth\\AuthService.cs",
+              "ViewState": "AgIAAFEAAAAAAAAAAAAAAHAAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-09T22:38:12.5Z",
               "EditorCaption": ""
             }
           ]
