@@ -5,7 +5,7 @@ services:
       context: ./backend/chat
       dockerfile: Dockerfile
     ports:
-      - "5002:8080"
+      - "8080:8080"
     environment:
       ConnectionStrings__DefaultConnection: Host=postgres;Port=5432;Database=chatdb;Username=postgres;Password=postgres
     depends_on:
@@ -20,7 +20,7 @@ services:
       args:
         VITE_API_URL: /api
     ports:
-      - "8082:80"
+      - "3000:80"
     depends_on:
       - backend
     
